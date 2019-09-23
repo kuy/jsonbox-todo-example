@@ -18,8 +18,8 @@ fn main() -> Result<(), Error> {
     println!("Created: {:?}", record);
 
     todo.done = true;
-    let _ = client.update(&meta.id, &todo)?;
-    let (record, _) = client.read::<Todo>(&meta.id)?;
+    client.update(&meta.id, &todo)?;
+    let (record, _) = client.read().id::<Todo>(&meta.id)?;
     println!("Updated: {:?}", record);
 
     Ok(())
