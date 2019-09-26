@@ -1,4 +1,4 @@
-use jsonbox::client::{Client, Error};
+use jsonbox::{Client, Error};
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -21,6 +21,12 @@ fn main() -> Result<(), Error> {
     client.update(&meta.id, &todo)?;
     let (record, _) = client.read().id::<Todo>(&meta.id)?;
     println!("Updated: {:?}", record);
+
+    let records = client.read().filter_by("done:{}", true).run::<Todo>()?;
+    println!("Done TODOs: {:?}", records);
+
+    let records = client.read().filter_by("done:{}", false).run::<Todo>()?;
+    println!("Working TODOs: {:?}", records);
 
     Ok(())
 }

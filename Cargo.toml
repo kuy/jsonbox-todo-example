@@ -5,5 +5,5 @@ authors = ["Yuki Kodama <endflow.net@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-jsonbox = "0.0.3"
+jsonbox = "0.1.0"
 serde = "1.0"
